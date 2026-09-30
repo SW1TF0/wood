@@ -1,0 +1,14 @@
+{
+  "name": "chopaholic",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chopaholic — handcrafted wooden boards e-commerce store (static HTML/CSS/Vanilla JS)",
+  "scripts": {
+    "build:css": "tailwindcss -c tailwind.config.js -i src/tailwind.css -o assets/css/chopaholic.css --minify",
+    "watch:css": "tailwindcss -c tailwind.config.js -i src/tailwind.css -o assets/css/chopaholic.css --watch",
+    "start": "npx --yes serve -l 8080 ."
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  }
+}

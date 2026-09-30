@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chopaholic — Handcrafted Wooden Cutting & Serving Boards</title>
+  <meta name="description" content="Chopaholic crafts heirloom wooden cutting boards, serving boards and gift sets by hand from walnut, oak, ash, cherry and olive wood. Prices incl. VAT, cash on delivery, 14-day returns.">
+  <meta name="theme-color" content="#2C1A0E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='14' width='44' height='36' rx='8' fill='%238B5A2B'/%3E%3Crect x='44' y='26' width='16' height='12' rx='6' fill='%238B5A2B'/%3E%3Cpath d='M12 24c10-4 22 4 32 0M12 34c10-4 22 4 32 0M12 42c10-3 22 3 32 0' stroke='%232C1A0E' stroke-opacity='.45' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <!-- Compiled from src/ (Tailwind + custom styles). Rebuild with `npm run build:css`. -->
+  <link rel="stylesheet" href="assets/css/chopaholic.css">
+</head>
+<body class="min-h-screen">
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- ================= Announcement bar (managed in Admin → Ads & Promotions) ================= -->
+  <div id="announce" class="wood-amber text-cream text-xs sm:text-sm hidden" role="region" aria-label="Announcement">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex items-center gap-3">
+      <span aria-hidden="true" class="hidden sm:inline">✦</span>
+      <p id="announce-text" class="flex-1 text-center font-medium sm:tracking-wide leading-snug"></p>
+      <a id="announce-link" href="#shop" class="underline underline-offset-4 font-semibold whitespace-nowrap hover:text-walnut transition"></a>
+      <button id="announce-close" type="button" class="w-7 h-7 rounded-full hover:bg-walnut/30 transition flex items-center justify-center" aria-label="Dismiss announcement">✕</button>
+    </div>
+  </div>
+
+  <!-- ================= Header ================= -->
+  <header id="site-header" class="sticky top-0 z-40 wood-dark text-cream">
+    <div class="max-w-7xl mx-auto px-4 h-[72px] flex items-center justify-between gap-4">
+      <a href="#home" class="flex items-center gap-3 group" aria-label="Chopaholic — home">
+        <span class="relative w-11 h-11 rounded-xl wood-amber flex items-center justify-center shadow-lg ring-1 ring-accent/50 group-hover:rotate-[-8deg] transition-transform duration-300">
+          <svg viewBox="0 0 40 40" class="w-7 h-7" aria-hidden="true">
+            <rect x="4" y="8" width="26" height="24" rx="5" fill="#FAEDCD" fill-opacity=".92"/>
+            <rect x="27" y="16" width="10" height="8" rx="4" fill="#FAEDCD" fill-opacity=".92"/>
+            <circle cx="33" cy="20" r="1.6" fill="#8B5A2B"/>
+            <path d="M8 15c6-2.5 12 2 18 0M8 21c6-2.5 12 2 18 0M8 27c6-2 12 2 18 0" stroke="#8B5A2B" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="leading-none">
+          <span class="block font-display text-2xl font-bold tracking-wide">Chop<span class="text-accent italic">aholic</span></span>
+          <span class="block text-[10px] uppercase tracking-[0.3em] text-accent/80 mt-1">Handcrafted boards</span>
+        </span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
+        <a href="#home" class="nav-link" data-nav="home">Home</a>
+        <a href="#shop" class="nav-link" data-nav="shop">Shop</a>
+        <a href="#stories" class="nav-link" data-nav="stories">Stories</a>
+        <a href="#legal" class="nav-link" data-nav="legal">Legal Info</a>
+        <a href="#contact" class="nav-link" data-nav="contact">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button id="admin-trigger" type="button" class="w-10 h-10 rounded-full flex items-center justify-center text-cream/35 hover:text-accent hover:bg-white/5 transition" aria-label="Staff login" title="Staff login">
+          <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+        </button>
+        <button id="cart-button" type="button" class="relative w-11 h-11 rounded-full bg-accent/15 hover:bg-accent/30 ring-1 ring-accent/40 flex items-center justify-center transition hover:-translate-y-0.5" aria-label="Open shopping cart">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1.2 11.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 7Z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg>
+          <span id="cart-count" class="cart-badge" aria-live="polite">0</span>
+        </button>
+        <button id="menu-toggle" type="button" class="md:hidden w-11 h-11 rounded-full hover:bg-white/10 flex items-center justify-center" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg viewBox="0 0 24 24" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav id="mobile-nav" class="md:hidden border-t border-accent/20" aria-label="Mobile navigation">
+      <div class="px-4 py-3 flex flex-col">
+        <a href="#home" class="py-3 border-b border-accent/10 font-medium">Home</a>
+        <a href="#shop" class="py-3 border-b border-accent/10 font-medium">Shop</a>
+        <a href="#stories" class="py-3 border-b border-accent/10 font-medium">Stories</a>
+        <a href="#legal" class="py-3 border-b border-accent/10 font-medium">Legal Info</a>
+        <a href="#contact" class="py-3 font-medium">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ================= Hero ================= -->
+    <section id="home" class="relative wood-dark text-cream overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div class="absolute -top-40 -right-32 w-[520px] h-[520px] rounded-full bg-accent/10 blur-3xl"></div>
+        <div class="absolute -bottom-40 -left-20 w-[420px] h-[420px] rounded-full bg-amberwood/30 blur-3xl"></div>
+      </div>
+      <div class="relative max-w-7xl mx-auto px-4 pt-14 pb-20 md:pt-20 md:pb-28 grid md:grid-cols-2 gap-12 items-center">
+        <div class="reveal">
+          <p id="hero-eyebrow" class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-accent font-semibold mb-5"></p>
+          <h1 id="hero-title" class="hero-title font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.08]"></h1>
+          <p id="hero-subtitle" class="mt-6 text-lg text-cream/80 max-w-xl leading-relaxed"></p>
+          <div class="mt-9 flex flex-wrap gap-4">
+            <a href="#shop" id="hero-cta" class="btn btn-accent text-base px-7 py-4">
+              <span id="hero-cta-text">Explore Boards</span>
+              <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#stories" class="btn btn-light text-base px-7 py-4">Care guides</a>
+          </div>
+          <dl class="mt-12 grid grid-cols-3 gap-4 max-w-md">
+            <div><dt class="text-xs uppercase tracking-widest text-cream/50">Woods</dt><dd class="font-display text-2xl text-accent">7+</dd></div>
+            <div><dt class="text-xs uppercase tracking-widest text-cream/50">Returns</dt><dd class="font-display text-2xl text-accent">14 days</dd></div>
+            <div><dt class="text-xs uppercase tracking-widest text-cream/50">Guarantee</dt><dd class="font-display text-2xl text-accent">5 years</dd></div>
+          </dl>
+        </div>
+        <div class="relative reveal flex justify-center">
+          <div class="absolute inset-8 rounded-full bg-accent/20 blur-2xl" aria-hidden="true"></div>
+          <img id="hero-image" class="hero-board relative w-full max-w-xl" alt="Handcrafted walnut and maple end-grain chopping board" width="800" height="600">
+        </div>
+      </div>
+      <svg class="absolute bottom-0 left-0 w-full h-10 text-paper" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40V18C240 0 480 36 720 20S1200 2 1440 18v22Z" fill="currentColor"/></svg>
+    </section>
+
+    <!-- ================= Trust strip ================= -->
+    <section class="paper-bg" aria-label="Why Chopaholic">
+      <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass-card p-5 flex gap-4 items-start reveal">
+          <span class="text-2xl" aria-hidden="true">🪵</span>
+          <div><h3 class="font-semibold">Handcrafted</h3><p class="text-sm text-walnut/70">Every board shaped and finished by hand in Bulgaria.</p></div>
+        </div>
+        <div class="glass-card p-5 flex gap-4 items-start reveal">
+          <span class="text-2xl" aria-hidden="true">🚚</span>
+          <div><h3 class="font-semibold">Free shipping</h3><p class="text-sm text-walnut/70" id="trust-shipping">On orders over €120.</p></div>
+        </div>
+        <div class="glass-card p-5 flex gap-4 items-start reveal">
+          <span class="text-2xl" aria-hidden="true">💶</span>
+          <div><h3 class="font-semibold">Cash on delivery</h3><p class="text-sm text-walnut/70">Pay the courier when your boards arrive.</p></div>
+        </div>
+        <div class="glass-card p-5 flex gap-4 items-start reveal">
+          <span class="text-2xl" aria-hidden="true">↩️</span>
+          <div><h3 class="font-semibold">14-day returns</h3><p class="text-sm text-walnut/70">EU right of withdrawal, no questions asked.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Shop ================= -->
+    <section id="shop" class="paper-bg pt-10 pb-20">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 reveal">
+          <div>
+            <p class="text-xs uppercase tracking-[0.3em] text-amberwood font-semibold">The collection</p>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold mt-2">Boards made to be used — and loved</h2>
+            <div class="divider-wood mt-4"></div>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+            <label class="relative flex-1 sm:w-64">
+              <span class="sr-only">Search products</span>
+              <svg viewBox="0 0 24 24" class="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-amberwood" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+              <input id="shop-search" type="search" class="field pl-10" placeholder="Search walnut, oak, gift…" autocomplete="off">
+            </label>
+            <label class="sm:w-56">
+              <span class="sr-only">Sort products</span>
+              <select id="shop-sort" class="field">
+                <option value="featured">Sort: Featured</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="name">Name: A–Z</option>
+                <option value="popular">Most viewed</option>
+                <option value="newest">Newest</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div id="category-filters" class="flex gap-2 overflow-x-auto pb-2 mb-8 scroll-thin reveal" role="tablist" aria-label="Filter by category"></div>
+        <p class="text-sm text-walnut/60 mb-6 flex flex-wrap gap-x-4 gap-y-1">
+          <span id="shop-count"></span>
+          <span>All prices include <span class="vat-rate">20</span>% VAT · Shipping calculated in cart</span>
+        </p>
+        <div id="product-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+        <div id="product-empty" class="hidden text-center py-16">
+          <p class="font-display text-2xl">No boards match your search.</p>
+          <button type="button" class="btn btn-ghost mt-4" data-action="reset-filters">Clear filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Homepage promotion (managed in Admin) ================= -->
+    <section id="promo" class="hidden wood-amber text-cream relative overflow-hidden">
+      <div class="absolute inset-0 bg-gradient-to-r from-walnut/70 to-transparent" aria-hidden="true"></div>
+      <div class="relative max-w-7xl mx-auto px-4 py-16 grid md:grid-cols-5 gap-10 items-center">
+        <div class="md:col-span-3 reveal">
+          <span id="promo-badge" class="badge badge-dark ring-1 ring-accent/60"></span>
+          <h2 id="promo-title" class="font-display text-3xl sm:text-4xl font-bold mt-4"></h2>
+          <p id="promo-text" class="mt-4 text-cream/85 text-lg max-w-2xl leading-relaxed"></p>
+          <button id="promo-cta" type="button" class="btn btn-accent mt-8"></button>
+        </div>
+        <div class="md:col-span-2 reveal">
+          <img id="promo-image" class="w-full rounded-3xl shadow-2xl ring-4 ring-cream/20 rotate-2 hover:rotate-0 transition duration-500" alt="">
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Stories / Blog ================= -->
+    <section id="stories" class="py-20 wood-light">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+          <p class="text-xs uppercase tracking-[0.3em] text-amberwood font-semibold">Stories & care guides</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-2">From the workshop</h2>
+          <div class="divider-wood mt-4 mx-auto"></div>
+          <p class="mt-4 text-walnut/70">Practical advice on choosing, using and caring for wooden boards — straight from the bench.</p>
+        </div>
+        <div id="story-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+        <p id="story-empty" class="hidden text-center text-walnut/60 py-10">New stories are on their way.</p>
+      </div>
+    </section>
+
+    <!-- ================= Legal info ================= -->
+    <section id="legal" class="paper-bg py-20">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+          <p class="text-xs uppercase tracking-[0.3em] text-amberwood font-semibold">Transparency</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-2">Legal information</h2>
+          <div class="divider-wood mt-4 mx-auto"></div>
+          <p class="mt-4 text-walnut/70">Shopping with us is protected by EU consumer law. Everything you need to know, in plain language.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <button type="button" data-legal="privacy" class="glass-card p-6 text-left hover:-translate-y-1 hover:shadow-xl transition duration-300 reveal">
+            <span class="text-3xl" aria-hidden="true">🔒</span>
+            <h3 class="font-display text-xl font-semibold mt-3">Privacy Policy</h3>
+            <p class="text-sm text-walnut/70 mt-2">How we process your personal data under the GDPR and your rights.</p>
+            <span class="inline-block mt-4 text-amberwood font-semibold text-sm">Read policy →</span>
+          </button>
+          <button type="button" data-legal="terms" class="glass-card p-6 text-left hover:-translate-y-1 hover:shadow-xl transition duration-300 reveal">
+            <span class="text-3xl" aria-hidden="true">📜</span>
+            <h3 class="font-display text-xl font-semibold mt-3">Terms & Conditions</h3>
+            <p class="text-sm text-walnut/70 mt-2">Sales rules, pricing, delivery, payment and our guarantees.</p>
+            <span class="inline-block mt-4 text-amberwood font-semibold text-sm">Read terms →</span>
+          </button>
+          <button type="button" data-legal="withdrawal" class="glass-card p-6 text-left hover:-translate-y-1 hover:shadow-xl transition duration-300 reveal">
+            <span class="text-3xl" aria-hidden="true">↩️</span>
+            <h3 class="font-display text-xl font-semibold mt-3">Withdrawal & Returns</h3>
+            <p class="text-sm text-walnut/70 mt-2">Your 14-day right of withdrawal, return process and model form.</p>
+            <span class="inline-block mt-4 text-amberwood font-semibold text-sm">Read policy →</span>
+          </button>
+          <button type="button" data-legal="cookies" class="glass-card p-6 text-left hover:-translate-y-1 hover:shadow-xl transition duration-300 reveal">
+            <span class="text-3xl" aria-hidden="true">🍪</span>
+            <h3 class="font-display text-xl font-semibold mt-3">Cookie Policy</h3>
+            <p class="text-sm text-walnut/70 mt-2">What we store on your device and how to change your choices.</p>
+            <span class="inline-block mt-4 text-amberwood font-semibold text-sm">Read policy →</span>
+          </button>
+        </div>
+        <div class="mt-10 grid lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 glass-card p-6 reveal">
+            <h3 class="font-display text-xl font-semibold">Merchant information</h3>
+            <p class="text-sm text-walnut/60 mt-1">Pursuant to Directive 2000/31/EC (E-Commerce Directive) and the Bulgarian Electronic Commerce Act</p>
+            <dl class="merchant-details mt-4 grid sm:grid-cols-2 gap-x-6 gap-y-3 text-sm"></dl>
+          </div>
+          <div class="wood-dark text-cream rounded-[18px] p-6 flex flex-col justify-between gap-4 reveal">
+            <div>
+              <h3 class="font-display text-xl font-semibold">Changed your mind?</h3>
+              <p class="text-sm text-cream/75 mt-2">You can withdraw from your purchase within 14 days of receiving it — online, in under a minute.</p>
+            </div>
+            <button type="button" class="btn btn-accent self-start" data-action="open-withdrawal">Withdraw from contract here</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= Contact ================= -->
+    <section id="contact" class="wood-dark text-cream py-20 relative overflow-hidden">
+      <div class="absolute -right-24 top-10 w-96 h-96 rounded-full bg-accent/10 blur-3xl" aria-hidden="true"></div>
+      <div class="relative max-w-7xl mx-auto px-4 grid lg:grid-cols-5 gap-10">
+        <div class="lg:col-span-2 reveal">
+          <p class="text-xs uppercase tracking-[0.3em] text-accent font-semibold">Get in touch</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold mt-2">Talk to the maker</h2>
+          <div class="divider-wood mt-4"></div>
+          <p class="mt-5 text-cream/75 leading-relaxed">Questions about a board, a custom size or an order? Send a message and we will reply within one working day.</p>
+          <ul class="mt-8 space-y-4" id="contact-details"></ul>
+        </div>
+        <form id="contact-form" class="lg:col-span-3 glass-panel rounded-3xl p-6 sm:p-8 text-walnut reveal" novalidate>
+          <h3 class="font-display text-2xl font-semibold mb-6">Send us a message</h3>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label class="field-label" for="c-name">Full name *</label>
+              <input id="c-name" name="name" class="field" autocomplete="name" required maxlength="80">
+              <p class="field-error" data-error-for="name"></p>
+            </div>
+            <div>
+              <label class="field-label" for="c-email">Email *</label>
+              <input id="c-email" name="email" type="email" class="field" autocomplete="email" required maxlength="120">
+              <p class="field-error" data-error-for="email"></p>
+            </div>
+          </div>
+          <div class="mt-2">
+            <label class="field-label" for="c-subject">Subject *</label>
+            <select id="c-subject" name="subject" class="field">
+              <option>Question about a product</option>
+              <option>Order enquiry</option>
+              <option>Custom / engraved board</option>
+              <option>Return or complaint</option>
+              <option>Data protection request</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="mt-4">
+            <label class="field-label" for="c-message">Message *</label>
+            <textarea id="c-message" name="message" rows="5" class="field resize-y" required maxlength="2000"></textarea>
+            <p class="field-error" data-error-for="message"></p>
+          </div>
+          <label class="flex gap-3 items-start mt-2 text-sm">
+            <input type="checkbox" name="consent" class="check" required>
+            <span>I have read the <button type="button" class="underline text-amberwood" data-legal="privacy">Privacy Policy</button> and agree that my details are used to answer my enquiry. *</span>
+          </label>
+          <p class="field-error" data-error-for="consent"></p>
+          <button type="submit" class="btn btn-primary mt-4 w-full sm:w-auto">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= Footer ================= -->
+  <footer class="bg-[#1d1108] text-cream/80 wood-edge">
+    <div class="max-w-7xl mx-auto px-4 pt-14 pb-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div>
+        <p class="font-display text-2xl font-bold text-cream">Chop<span class="text-accent italic">aholic</span></p>
+        <p class="text-sm mt-3 leading-relaxed">Heirloom-quality wooden cutting and serving boards, handcrafted in Bulgaria.</p>
+        <p class="text-xs mt-4 text-cream/50">All prices in EUR incl. <span class="vat-rate">20</span>% VAT. Shipping costs shown before checkout. Payment: cash on delivery.</p>
+      </div>
+      <div>
+        <h3 class="text-cream font-semibold mb-4">Shop</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#shop" data-filter-link="cutting-boards" class="hover:text-accent transition">Cutting Boards</a></li>
+          <li><a href="#shop" data-filter-link="serving-boards" class="hover:text-accent transition">Serving Boards</a></li>
+          <li><a href="#shop" data-filter-link="gift-sets" class="hover:text-accent transition">Gift Sets</a></li>
+          <li><a href="#stories" class="hover:text-accent transition">Stories & care guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-cream font-semibold mb-4">Legal</h3>
+        <ul class="space-y-2 text-sm">
+          <li><button type="button" data-legal="privacy" class="hover:text-accent transition">Privacy Policy</button></li>
+          <li><button type="button" data-legal="terms" class="hover:text-accent transition">Terms & Conditions</button></li>
+          <li><button type="button" data-legal="withdrawal" class="hover:text-accent transition">Right of Withdrawal & Returns</button></li>
+          <li><button type="button" data-legal="cookies" class="hover:text-accent transition">Cookie Policy</button></li>
+          <li><button type="button" data-action="cookie-settings" class="hover:text-accent transition">Cookie settings</button></li>
+          <li><button type="button" data-action="open-withdrawal" class="hover:text-accent transition font-semibold text-accent">Withdraw from contract here</button></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-cream font-semibold mb-4">Merchant</h3>
+        <address class="not-italic text-sm space-y-2" id="footer-merchant"></address>
+      </div>
+    </div>
+    <div class="border-t border-accent/15">
+      <div class="max-w-7xl mx-auto px-4 py-5 text-xs text-cream/50 flex flex-col sm:flex-row gap-2 justify-between">
+        <p>© <span id="year"></span> Chopaholic · <span id="footer-owner"></span>. All rights reserved.</p>
+        <p>Consumer disputes: Commission for Consumer Protection, <a href="https://kzp.bg" target="_blank" rel="noopener noreferrer" class="underline hover:text-accent">kzp.bg</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= Cart drawer ================= -->
+  <div id="drawer-overlay" class="fixed inset-0 z-50 bg-walnut/60 backdrop-blur-sm" aria-hidden="true"></div>
+  <aside id="cart-drawer" class="fixed top-0 right-0 z-[60] h-full w-full sm:w-[460px] glass-panel flex flex-col" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+    <div class="wood-dark text-cream px-5 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <button id="drawer-back" type="button" class="hidden w-9 h-9 rounded-full hover:bg-white/10 flex items-center justify-center" aria-label="Back to cart">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <h2 id="drawer-title" class="font-display text-xl font-semibold">Your cart</h2>
+      </div>
+      <button id="drawer-close" type="button" class="w-9 h-9 rounded-full hover:bg-white/10 flex items-center justify-center" aria-label="Close cart">✕</button>
+    </div>
+    <div id="drawer-steps" class="px-5 pt-3 flex items-center gap-2 text-xs font-semibold text-amberwood" aria-hidden="true">
+      <span data-step-dot="cart" class="px-2 py-1 rounded-full bg-walnut text-cream">1 · Cart</span>
+      <span class="flex-1 h-px bg-accent/50"></span>
+      <span data-step-dot="checkout" class="px-2 py-1 rounded-full">2 · Details</span>
+      <span class="flex-1 h-px bg-accent/50"></span>
+      <span data-step-dot="done" class="px-2 py-1 rounded-full">3 · Confirmed</span>
+    </div>
+    <div id="drawer-body" class="flex-1 overflow-y-auto scroll-thin px-5 py-4"></div>
+    <div id="drawer-footer" class="border-t border-accent/40 px-5 py-4 bg-cream/60"></div>
+  </aside>
+
+  <!-- ================= Admin panel ================= -->
+  <div id="admin-panel" class="fixed inset-0 z-[70] wood-dark" role="dialog" aria-modal="true" aria-label="Admin panel" aria-hidden="true">
+    <div class="admin-shell h-full flex flex-col lg:flex-row">
+      <aside class="glass-dark lg:w-64 flex-shrink-0 flex lg:flex-col">
+        <div class="hidden lg:flex items-center gap-3 px-5 py-6 border-b border-accent/20">
+          <span class="w-10 h-10 rounded-xl wood-amber flex items-center justify-center font-display text-cream text-lg font-bold">C</span>
+          <div class="leading-tight"><p class="font-display text-cream text-lg">Chopaholic</p><p class="text-[11px] uppercase tracking-widest text-accent">Admin panel</p></div>
+        </div>
+        <nav id="admin-nav" class="flex lg:flex-col gap-1 p-2 lg:p-4 overflow-x-auto scroll-thin flex-1" aria-label="Admin sections"></nav>
+        <div class="hidden lg:block p-4 border-t border-accent/20 space-y-2">
+          <button type="button" class="admin-nav-btn" data-admin-action="view-store">↗ View store</button>
+          <button type="button" class="admin-nav-btn" data-admin-action="logout">⎋ Log out</button>
+        </div>
+      </aside>
+      <div class="flex-1 flex flex-col min-w-0 paper-bg">
+        <header class="flex items-center justify-between gap-3 px-4 sm:px-8 py-4 border-b border-accent/30 bg-cream/70 backdrop-blur">
+          <div>
+            <h2 id="admin-title" class="font-display text-2xl font-bold text-walnut">Dashboard</h2>
+            <p id="admin-subtitle" class="text-xs text-walnut/60"></p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="hidden sm:inline-flex items-center gap-2 text-xs text-walnut/60"><span class="w-2 h-2 rounded-full bg-green-600 animate-pulse"></span>Live</span>
+            <button type="button" class="btn btn-ghost btn-sm lg:hidden" data-admin-action="view-store">Store</button>
+            <button type="button" class="btn btn-primary btn-sm lg:hidden" data-admin-action="logout">Log out</button>
+          </div>
+        </header>
+        <div id="admin-content" class="flex-1 overflow-y-auto scroll-thin p-4 sm:p-8"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= Cookie consent banner ================= -->
+  <div id="cookie-banner" class="fixed z-[90] bottom-0 inset-x-0 sm:bottom-5 sm:left-5 sm:right-auto sm:max-w-md p-3 sm:p-0" role="dialog" aria-live="polite" aria-labelledby="cookie-title" aria-describedby="cookie-desc" hidden>
+    <div class="glass-panel rounded-3xl p-6 wood-edge overflow-hidden">
+      <div class="flex items-start gap-3">
+        <span class="text-3xl" aria-hidden="true">🍪</span>
+        <div>
+          <h2 id="cookie-title" class="font-display text-xl font-semibold">We respect your privacy</h2>
+          <p id="cookie-desc" class="text-sm text-walnut/75 mt-2 leading-relaxed">We use strictly necessary storage to run the shop and your cart. With your consent, we also remember your shop preferences and count product views on your device. No advertising trackers, ever. <button type="button" class="underline text-amberwood" data-legal="cookies">Cookie Policy</button></p>
+        </div>
+      </div>
+      <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2">
+        <button type="button" class="btn btn-primary sm:col-span-2" data-consent="accept">Accept all</button>
+        <button type="button" class="btn btn-ghost" data-consent="decline">Decline non-essential</button>
+        <button type="button" class="btn btn-ghost" data-consent="settings">Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toasts" aria-live="polite"></div>
+
+  <noscript>
+    <div style="position:fixed;inset:auto 0 0 0;background:#2C1A0E;color:#FAEDCD;padding:16px;text-align:center;z-index:999">
+      Chopaholic needs JavaScript enabled to show the shop, cart and checkout.
+    </div>
+  </noscript>
+
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/legal.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

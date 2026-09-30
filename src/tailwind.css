@@ -1,0 +1,5 @@
+/* Build entry: Tailwind base → Chopaholic component styles → Tailwind utilities (so utilities can override components). */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "./styles.css";
+@import "tailwindcss/utilities";
